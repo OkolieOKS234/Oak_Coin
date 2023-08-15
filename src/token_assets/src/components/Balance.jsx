@@ -1,14 +1,20 @@
 import React, { useState } from "react";
 // Classes from Motoko
 import {Principal} from "@dfinity/principal";
+import { token } from "../../../declarations/token"
 
 function Balance() {
   const [inputValue, setInput] = useState("")
+  const [balanceResult, setBalance ] = useState("")
   
   async function handleClick() {
     console.log(inputValue);
+    // convert
+const principal= Principal.fromText(inputValue);
 
-    // await 
+    const balance = await token.balanceOf(principal)
+
+    setBalance(balance.toLocaleString());
   }
 
 
@@ -34,7 +40,7 @@ function Balance() {
           Check Balance
         </button>
       </p>
-      <p>This account has a balance of XYZ.</p>
+      <p>This account has a balance of {balanceResult}</p>
     </div>
   );
 }
