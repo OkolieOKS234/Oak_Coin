@@ -86,14 +86,17 @@ module.exports = {
       template: path.join(__dirname, asset_entry),
       cache: false,
     }),
-    // new CopyPlugin({
-    //   patterns: [
-    //     {
-    //       from: path.join(__dirname, "src", frontendDirectory, "assets"),
-    //       to: path.join(__dirname, "dist", frontendDirectory),
-    //     },
-    //   ],
-    // }),
+    // process.env.NODE_ENV !== "production"? 
+    //   new CopyPlugin({
+    //     patterns: [
+    //       {
+    //         from: path.join(__dirname, "src", frontendDirectory, "assets"),
+    //         to: path.join(__dirname, "dist", frontendDirectory),
+    //       },
+    //     ],
+    //   })
+    // :
+    //   () => undefined,
     new webpack.EnvironmentPlugin({
       NODE_ENV: "development",
       ...canisterEnvVariables,

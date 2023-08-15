@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
+// Classes from Motoko
+import {Principal} from "@dfinity/principal";
 
 function Balance() {
+  const [inputValue, setInput] = useState("")
   
   async function handleClick() {
-    console.log("Balance Button Clicked");
+    console.log(inputValue);
+
+    // await 
   }
 
 
@@ -15,6 +20,10 @@ function Balance() {
           id="balance-principal-id"
           type="text"
           placeholder="Enter a Principal ID"
+          value={inputValue}
+          onChange={(e)=>
+            setInput(e.target.value)
+          }
         />
       </p>
       <p className="trade-buttons">
