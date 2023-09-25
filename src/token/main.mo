@@ -26,6 +26,11 @@ let balance : Nat  = switch (balances.get(who)){
 
 
 return balance
-}
+};
+
+public query func getSymbol(): async Text{
+return symbol;
+};
+
 
 }
