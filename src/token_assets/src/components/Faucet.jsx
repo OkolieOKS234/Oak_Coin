@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
+import {token} from "../../../declarations/token";
+
 
 function Faucet() {
+const [isDisabled, setDisabled] = useState(false);
+//fo seting button
+const [buttonText, setText] = useState("Claim faucet");
+
 
   async function handleClick(event) {
-
+    setDisabled(true)
+const result = await token.payOut();
+setText(result);
+// setDisabled(false)
   }
 
   return (
@@ -16,8 +25,11 @@ function Faucet() {
       </h2>
       <label>Get your free Oak tokens here! Claim 10,000 Oak coins to your account.</label>
       <p className="trade-buttons">
-        <button id="btn-payout" onClick={handleClick}>
-          Gimme gimme
+        <button id="btn-payout" 
+        onClick={handleClick}
+        disabled={isDisabled}
+        >
+          {buttonText}
         </button>
       </p>
     </div>
